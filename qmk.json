@@ -1,6 +1,7 @@
 {
     "userspace_version": "1.1",
     "build_targets": [
-        ["crkbd", "home_row_mods"]
+        ["crkbd", "home_row_mods"],
+        ["crkbd/rev4_0/standard", "home_row_mods_ex2"]
     ]
 }
