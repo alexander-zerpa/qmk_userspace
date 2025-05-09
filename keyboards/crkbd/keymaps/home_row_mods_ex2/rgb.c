@@ -7,7 +7,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             }
         }
     }
-    if (get_highest_layer(layer_state) > 0 && get_highest_layer(layer_state) != 4) {
+    if (get_highest_layer(layer_state) > QWERTY && get_highest_layer(layer_state) != CONFIG) {
         uint8_t layer = get_highest_layer(layer_state);
 
         for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
