@@ -6,16 +6,20 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 bool render_status(void) {
     switch (get_highest_layer(layer_state)) {
-        case 0:
+        case QWERTY:
+        case NOHRM:
             oled_write_ln_P(PSTR("BASE"), false);
             break;
-        case 1:
+        case SYMBOLS:
             oled_write_ln_P(PSTR("SYMB"), false);
             break;
-        case 2:
+        case NAVIGATION:
             oled_write_ln_P(PSTR("NAV"), false);
             break;
-        case 3:
+        case SYSTEM:
+            oled_write_ln_P(PSTR("SYSTM"), false);
+            break;
+        case CONFIG:
             oled_write_ln_P(PSTR("CONF"), false);
             break;
         default:
@@ -28,8 +32,9 @@ bool render_status(void) {
     oled_write_P(led_state.num_lock ? PSTR("NUM\xD5\xD6") : PSTR("NUM\xD7\xD8"), false);
     oled_write_P(led_state.caps_lock ? PSTR("CAP\xD5\xD6") : PSTR("CAP\xD7\xD8"), false);
     oled_write_P(led_state.scroll_lock ? PSTR("SCR\xD5\xD6") : PSTR("SCR\xD7\xD8"), false);
+    oled_write_P(layer_state_is(NOHRM) ? PSTR("HRT\xD5\xD6") : PSTR("HRT\xD7\xD8"), false);
 
-    oled_set_cursor(0, 8);
+    oled_set_cursor(0, 9);
     #ifndef NO_ACTION_ONESHOT
     oled_write_P((get_mods() | get_oneshot_mods()) & MOD_MASK_SHIFT ? PSTR("SFT\xD5\xD6") : PSTR("SFT\xD7\xD8"), false);
     oled_write_P((get_mods() | get_oneshot_mods()) & MOD_MASK_CTRL ? PSTR("CTL\xD5\xD6") : PSTR("CTL\xD7\xD8"), false);
