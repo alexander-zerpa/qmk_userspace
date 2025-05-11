@@ -55,7 +55,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         n++;
     }
 
-    if (get_highest_layer(layer_state) > NOHRM && get_highest_layer(layer_state) != CONFIG) {
+    if (get_highest_layer(layer_state) != CONFIG) {
         keycodes[n] = KC_NO;
         colors[n] = (rgb_t){RGB_OFF};
         n++;
